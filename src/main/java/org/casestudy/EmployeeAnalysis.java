@@ -20,6 +20,7 @@ public class EmployeeAnalysis {
 
     /**
      * Reads employee data from a CSV file and populates the employees map.
+     *
      * @param fileName The name of the CSV file containing employee data.
      * @throws IOException If an I/O error occurs while reading the file.
      */
@@ -42,16 +43,13 @@ public class EmployeeAnalysis {
      */
     public void analyzeReportingLineLength() {
         for (Employee employee : employees.values()) {
-            if(employee == null) {
+            if (employee == null) {
                 System.out.println("employee info is not available.");
                 continue;
             }
             if (employee.getManagerId() != null) {
 
-                Employee manager = employees.get(employee.getManagerId());
-                if (manager != null) {
-                    manager.getSubordinates().add(employee);
-                }
+                populateSubordinates(employee);
 
                 int reportingLength = getReportingLength(employee);
                 employee.setReportingLineLength(reportingLength);
@@ -63,8 +61,16 @@ public class EmployeeAnalysis {
         }
     }
 
+    private void populateSubordinates(Employee employee) {
+        Employee manager = employees.get(employee.getManagerId());
+        if (manager != null) {
+            manager.getSubordinates().add(employee);
+        }
+    }
+
     /**
      * Calculates the reporting line length for a given employee.
+     *
      * @param employee The employee to calculate the reporting line length for.
      * @return The length of the reporting line.
      * @throws IllegalStateException If a manager is not found for an employee.
