@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,7 +25,7 @@ public class EmployeeAnalysis {
      */
     public void readEmployeeData(String fileName) throws IOException {
         try (FileReader reader = new FileReader(fileName)) {
-            List<Employee> employeeList = new CsvToBeanBuilder<Employee>(reader)
+            var employeeList = new CsvToBeanBuilder<Employee>(reader)
                     .withType(Employee.class)
                     .build()
                     .parse();
@@ -36,10 +35,6 @@ public class EmployeeAnalysis {
             }
         }
     }
-
-    /**
-     * Populate all the subordinates for a given employee.
-     */
 
     /**
      * Analyzes the reporting line length for each employee and prints out
@@ -97,7 +92,7 @@ public class EmployeeAnalysis {
         for (Employee employee : employees.values()) {
             //Salary is not analyzed if subordinates are not present for an employee
             if (employee.getManagerId() != null && !employee.getSubordinates().isEmpty()) {
-                List<Employee> subordinates = employee.getSubordinates();
+                var subordinates = employee.getSubordinates();
 
                 BigDecimal avgSalOfSubordinates = subordinates.stream()
                         .map(Employee::getSalary)
