@@ -54,7 +54,7 @@ The application performs the following analyses:
 Following are assumptions made on the case study : 
 
 - Each employee has a unique ID.
-- First name and last name are assumed to be present in all rows.
+- Salary is assumed to be not null in all rows.
 - There are no circular references in the management structure. 
       Eg- It shouldn't be like Employee A manager is Employee B and Employee B manager is Employee A
 - There is exactly one CEO in the dataset.
