@@ -61,6 +61,10 @@ public class EmployeeAnalysis {
         }
     }
 
+    /**
+     * To populate all the subordinates for a manager
+     * @param employee Manager to set the subordinates
+     */
     private void populateSubordinates(Employee employee) {
         Employee manager = employees.get(employee.getManagerId());
         if (manager != null) {
