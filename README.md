@@ -13,7 +13,7 @@ The application performs the following analyses:
 
 ## Prerequisites
 
-- Java SE (any version)
+- Java SE (version 22)
 - Maven
 - JUnit (for running tests)
 
