@@ -13,7 +13,9 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test class to cover basic sanity positive scenarios
+ * Test class to cover basic sanity positive scenarios.
+ * Since all the methods are with return type void , the test cases are validated on the
+ * output written to console
  */
 class EmployeeAnalysisPositiveTest {
 
@@ -39,7 +41,7 @@ class EmployeeAnalysisPositiveTest {
 
         employeeAnalysis.readEmployeeData(csvFile.getAbsolutePath());
 
-        // Use reflection to access the private employees map
+        // Get Map of id and corresponding employee object
         Map<Integer, Employee> employees = getEmployeesMap();
 
         assertEquals(2, employees.size());
@@ -69,13 +71,11 @@ class EmployeeAnalysisPositiveTest {
         employees.put(4, new Employee(4, "Alice", "Brown", BigDecimal.valueOf(50000.0),3));
         setEmployeesMap(employees);
 
-        // Capture System.out
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
         employeeAnalysis.analyzeReportingLineLength();
 
-        // Reset System.out
         System.setOut(System.out);
 
         String output = outContent.toString();
@@ -97,7 +97,6 @@ class EmployeeAnalysisPositiveTest {
         Employee manager2 = new Employee(3, "Bob", "Johnson", BigDecimal.valueOf(98000.00), 1);  // Modified
         Employee emp1 = new Employee(4, "Alice", "Brown", BigDecimal.valueOf(80000.00), 2);
         Employee emp2 = new Employee(5, "Charlie", "Davis", BigDecimal.valueOf(75000.00), 2);
-        Employee emp4 = new Employee(5, "Michael", "Jackson", BigDecimal.valueOf(750000.00), 2);
         Employee emp3 = new Employee(6, "Eve", "Wilson", BigDecimal.valueOf(70000.00), 3);
 
 
@@ -116,13 +115,11 @@ class EmployeeAnalysisPositiveTest {
 
         setEmployeesMap(employees);
 
-        // Capture System.out
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
         employeeAnalysis.analyzeSalary();
 
-        // Reset System.out
         System.setOut(System.out);
 
         String output = outContent.toString();
