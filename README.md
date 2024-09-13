@@ -16,6 +16,7 @@ The application performs the following analyses:
 - Java SE (version 22)
 - Maven
 - JUnit (for running tests)
+- csv file with employee details
 
 ## Setup
 
